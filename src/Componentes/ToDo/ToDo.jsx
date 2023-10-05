@@ -22,15 +22,15 @@ export const ToDo = () => {
                             <button  className=" h-10 flex justify-center items-center bg bg-slate-600 rounded-r-md  p-1 px-3  border-none hover:bg-slate-800"> <Search color="white" size={18}/> </button>
                         </div>
                     </section>
-                    <section className='mt-5'>
+                    <section className="mt-5 mx-5">
                         <ul>
                             <li className="flex justify-between items-center p-4 bg-white shadow rounded-md mb-2">
                                 <span>Tarea 1</span>
                                 <div>
-                                    <button className='text-green-600 hover:text-green-800 mr-2'>
+                                    <button className="text-green-600 hover:text-green-800 mr-2">
                                         <FaCheck />
                                     </button>
-                                    <button className='text-red-600 hover:text-red-800'>
+                                    <button className="text-red-600 hover:text-red-800">
                                         <FaTrash />
                                     </button>
                                 </div>
@@ -38,10 +38,10 @@ export const ToDo = () => {
                             <li className="flex justify-between items-center p-4 bg-white shadow rounded-md mb-2">
                                 <span>Tarea 2</span>
                                 <div>
-                                    <button className='text-green-600 hover:text-green-800 mr-2'>
+                                    <button className="text-green-600 hover:text-green-800 mr-2">
                                         <FaCheck />
                                     </button>
-                                    <button className='text-red-600 hover:text-red-800'>
+                                    <button className="text-red-600 hover:text-red-800">
                                         <FaTrash />
                                     </button>
                                 </div>
