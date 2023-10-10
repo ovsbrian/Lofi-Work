@@ -2,10 +2,28 @@ import { Navbar } from '@nextui-org/react';
 import { Search } from 'lucide-react';
 import { NavBar } from '../Layout/Navbar';
 import { FaCheck, FaTrash } from 'react-icons/fa';
+import { Task } from '../../utilities/Task';
 
 
 
 export const ToDo = () => {
+
+
+
+
+
+    let aceptar = document.getElementById("aceptar")
+
+    
+    
+  
+
+
+
+
+
+
+
 
     return (
         <>
@@ -17,39 +35,47 @@ export const ToDo = () => {
                     </section>
                     <section className='mx-5'>
                         <div className="flex justify-start items-center mt-2 ">
-                            <input id="search" className="h-10 rounded-l-md  w-full  bg-slate-500  focus:outline-none text-gray-50 pl-2"  placeholder="Buscar" type="text"/>
+                            <input id="SendTask" className="h-10 rounded-l-md  w-full  bg-slate-500  focus:outline-none text-gray-50 pl-2"  placeholder="Buscar" type="text"/>
 
-                            <button  className=" h-10 flex justify-center items-center bg bg-slate-600 rounded-r-md  p-1 px-3  border-none hover:bg-slate-800"> <Search color="white" size={18}/> </button>
+                            <button onClick={Todoinput} id="aceptar" className=" h-10 flex justify-center items-center bg bg-slate-600 rounded-r-md  p-1 px-3  border-none hover:bg-slate-800"> <Search color="white" size={18}/> </button>
                         </div>
                     </section>
                     <section className="mt-5 mx-5">
                         <ul>
-                            <li className="flex justify-between items-center p-4 bg-white shadow rounded-md mb-2">
-                                <span>Tarea 1</span>
-                                <div>
-                                    <button className="text-green-600 hover:text-green-800 mr-2">
-                                        <FaCheck />
-                                    </button>
-                                    <button className="text-red-600 hover:text-red-800">
-                                        <FaTrash />
-                                    </button>
-                                </div>
-                            </li>
-                            <li className="flex justify-between items-center p-4 bg-white shadow rounded-md mb-2">
-                                <span>Tarea 2</span>
-                                <div>
-                                    <button className="text-green-600 hover:text-green-800 mr-2">
-                                        <FaCheck />
-                                    </button>
-                                    <button className="text-red-600 hover:text-red-800">
-                                        <FaTrash />
-                                    </button>
-                                </div>
-                            </li>
+                            <Task/>
                         </ul>
-</section>
+                    </section>
                 </div>
             </div>
         </>
     )
 }
+
+
+function Todoinput() {
+
+   let task = document.getElementById("SendTask").value
+
+   if (localStorage.getItem("ArrayTask")) {
+
+    let ArrayTask = JSON.parse(localStorage.getItem("ArrayTask")) 
+    console.log("trae a "+ ArrayTask);
+    ArrayTask.push(task)
+    localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
+
+
+   }else{
+    let ArrayTask =[]
+    ArrayTask.push(task)
+    localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
+   }
+
+
+
+
+
+
+
+}
+
+
