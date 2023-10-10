@@ -7,13 +7,15 @@ function App() {
   return (
     <>
       <NextUIProvider>
-        <div className="h-screen w-full flex">
+        <main className="h-screen w-full flex bg-[#EAD7BB]">
           <ToDo />
-          <div className="w-7/12 h-full">
-            <Pomodoro/>
-            <Musica />
+          <div className="w-7/12 h-full flex flex-col justify-between ">
+            <Pomodoro />
+            <div className="flex w-full justify-end"> 
+              <Musica />
+            </div>
           </div>
-        </div>
+        </main>
       </NextUIProvider>
     </>
   );
