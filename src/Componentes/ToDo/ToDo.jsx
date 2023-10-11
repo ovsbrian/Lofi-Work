@@ -1,30 +1,11 @@
 import { Navbar } from '@nextui-org/react';
 import { Search } from 'lucide-react';
 import { NavBar } from '../Layout/Navbar';
-import { FaCheck, FaTrash } from 'react-icons/fa';
-import { Task } from '../../utilities/Task';
+import { RunTask, } from '../../utilities/Task';
 
 
 
 export const ToDo = () => {
-
-
-
-
-
-    let aceptar = document.getElementById("aceptar")
-
-    
-    
-  
-
-
-
-
-
-
-
-
     return (
         <>
             <div className="w-5/12 bg-[#E3E9FF]">
@@ -41,9 +22,7 @@ export const ToDo = () => {
                         </div>
                     </section>
                     <section className="mt-5 mx-5">
-                        <ul>
-                            <Task/>
-                        </ul>
+                            <RunTask/>
                     </section>
                 </div>
             </div>
@@ -54,28 +33,28 @@ export const ToDo = () => {
 
 function Todoinput() {
 
-   let task = document.getElementById("SendTask").value
+    if (document.getElementById("SendTask").value != "") {
+        let task = document.getElementById("SendTask").value
 
-   if (localStorage.getItem("ArrayTask")) {
+        if (localStorage.getItem("ArrayTask")) {
 
-    let ArrayTask = JSON.parse(localStorage.getItem("ArrayTask")) 
-    console.log("trae a "+ ArrayTask);
-    ArrayTask.push(task)
-    localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
-
-
-   }else{
-    let ArrayTask =[]
-    ArrayTask.push(task)
-    localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
-   }
-
-
-
-
+            let ArrayTask = JSON.parse(localStorage.getItem("ArrayTask")) 
+            ArrayTask.push({id: Date.now().toString(), task: task})
+            localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
+            RunTask()
+        }else{
+            let ArrayTask =[]
+            ArrayTask.push({id: Date.now().toString(), task: task})
+    
+            localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
+            RunTask()
+        }
+    
 
 
+    }
 
+    
 }
 
 
