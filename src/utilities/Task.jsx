@@ -1,27 +1,8 @@
-import { useState,useEffect } from 'react';
+
 import { FaCheck, FaTrash } from 'react-icons/fa';
 
 
-export const RunTask=()=>{
-    
-    const [tasks, setTasks] = useState([])
 
-    useEffect(() => {
-        let ArrayTask = JSON.parse(localStorage.getItem("ArrayTask")) || [];
-        setTasks(ArrayTask);
-        
-        console.log(tasks)
-    }, []);
-
-    const Arraymap = tasks.map((item) => <Task text={item.task} id={item.id} />)
-
-
-    return(
-            <ul>
-                {Arraymap}
-            </ul> 
-    )
-}
 
 export const Task = ({text,id}) =>{
 
