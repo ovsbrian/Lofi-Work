@@ -1,15 +1,36 @@
-import { Image } from "@nextui-org/react";
+import { useState } from "react";
+import { BarSound } from "./BarSound";
+import { ListChannel } from "./ListChannel/ListChannel";
 
 export const ImagenMusic = () => {
+  const [youtubeID, setYoutubeID] = useState("jfKfPfyJRdk");
+  const [imgID, setImgID] = useState("https://media.tenor.com/0hjOGLFaQa0AAAAd/lofi-girl-lofi.gif");
+
+  const [play, setPlay] = useState(false);
+  const togglePlay = (playState) => {
+    setPlay(playState);
+  };
   return (
     <>
-      <div className=" flex justify-center items-center">
-        <Image
-          width={140}
-          height={300}
-          className="h-24"
-          src="https://img.freepik.com/free-photo/cartoon-lofi-young-manga-style-girl-studying-while-listening-music-raining-street-ai-generative_123827-24916.jpg?size=626&ext=jpg&ga=GA1.2.740657310.1690462099&semt=sph"
-        />
+      <div className="flex gap-4">
+        <div className=" items-center w-32 h-20">
+          <iframe
+            className="video pointer-events-none select-none w-full h-full hidden"
+            title="Youtube player"
+            src={`https://youtube.com/embed/${youtubeID}?autoplay=${
+              play ? 1 : 0
+            }&modestbranding=1&controls=0&showinfo=0`}
+          ></iframe>
+          <img
+            src={imgID}
+            className="w-32 h-20 rounded-sm"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <span className="font-semibold">Lofi song</span>
+          <ListChannel setYoutubeID={setYoutubeID} setImgID={setImgID}/>
+          <BarSound togglePlay={togglePlay} />
+        </div>
       </div>
     </>
   );

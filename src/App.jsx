@@ -1,7 +1,8 @@
 import { NextUIProvider } from "@nextui-org/react";
 import { Musica } from "./Componentes/Musica/Musica";
-import { ToDo } from "./Componentes/ToDo/ToDo";
+ 
 import { Pomodoro } from "./Componentes/Pomodoro/Pomodoro";
+import { ToDo } from "./Componentes/ToDo/ToDo";
 
 function App() {
   return (
