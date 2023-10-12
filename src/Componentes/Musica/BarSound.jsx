@@ -1,7 +1,7 @@
 import { Pause, Play, SkipBack, SkipForward, Volume2 } from "lucide-react";
 import { useState } from "react";
 
-export const BarSound = ({ togglePlay, setImgID }) => {
+export const BarSound = ({ togglePlay }) => {
   const [pauseState, setPauseState] = useState(true);
 
   function pauseResume() {

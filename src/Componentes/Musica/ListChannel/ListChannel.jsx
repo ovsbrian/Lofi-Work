@@ -15,27 +15,28 @@ export const ListChannel = ({ setYoutubeID, setImgID }) => {
     {
       nameRadio: "Lofi Hip Hop",
       radioID: "jfKfPfyJRdk",
-      setImgID: "https://media.tenor.com/0hjOGLFaQa0AAAAd/lofi-girl-lofi.gif",
+      setImgID: "0hjOGLFaQa0AAAAd/lofi-girl-lofi",
     },
     {
       nameRadio: "Jazz Lofi",
       radioID: "HAZoLuME-PU",
-      setImgID: "https://media.tenor.com/MMQLFgdTW4sAAAAd/music-anime-anime.gif",
+      setImgID: "MMQLFgdTW4sAAAAd/music-anime-anime",
     },
     {
       nameRadio: "Coffee Shop Radio",
       radioID: "lP26UCnoH9s",
-      setImgID: "https://media.tenor.com/avGMW8rlSt0AAAAd/cafe.gif",
+      setImgID: "avGMW8rlSt0AAAAd/cafe",
     },
     {
       nameRadio: "Chill radio",
       radioID: "tyVQk-BAWms",
-      setImgID: "https://media.tenor.com/mZ2TFt7WPD0AAAAC/baby.gif",
+      setImgID: "mZ2TFt7WPD0AAAAC/baby",
     },
     {
       nameRadio: "Lofi & Rain",
       radioID: "0ba7dl40tSQ",
-      setImgID: "https://media.tenor.com/Ep_QVNj--2gAAAAd/lick.gif",
+      setImgID: "Ep_QVNj--2gAAAAd/lick",
+
     },
   ];
 

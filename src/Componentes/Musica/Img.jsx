@@ -4,9 +4,7 @@ import { ListChannel } from "./ListChannel/ListChannel";
 
 export const ImagenMusic = () => {
   const [youtubeID, setYoutubeID] = useState("jfKfPfyJRdk");
-  const [imgID, setImgID] = useState(
-    "https://media.tenor.com/0hjOGLFaQa0AAAAd/lofi-girl-lofi.gif"
-  );
+  const [imgID, setImgID] = useState("0hjOGLFaQa0AAAAd/lofi-girl-lofi");
 
   const [play, setPlay] = useState(false);
   const togglePlay = (playState) => {
@@ -22,7 +20,10 @@ export const ImagenMusic = () => {
             play ? 1 : 0
           }&modestbranding=1&controls=0&showinfo=0`}
         ></iframe>
-        <img src={imgID} className="w-40 h-20 rounded-sm" />
+        <img
+          src={`https://media.tenor.com/${imgID}.gif`}
+          className="w-40 h-20 rounded-sm"
+        />
       </div>
       <div className="flex flex-col w-full items-center justify-center gap-4">
         <div className="flex flex-col items-center gap-1">
@@ -30,7 +31,7 @@ export const ImagenMusic = () => {
           <ListChannel setYoutubeID={setYoutubeID} setImgID={setImgID} />
         </div>
         <div className="flex gap-2">
-          <BarSound togglePlay={togglePlay} setImgID={setImgID} />
+          <BarSound togglePlay={togglePlay} />
         </div>
       </div>
     </>
