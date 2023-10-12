@@ -31,7 +31,7 @@ export const ImagenMusic = () => {
           <ListChannel setYoutubeID={setYoutubeID} setImgID={setImgID} />
         </div>
         <div className="flex gap-2">
-          <BarSound togglePlay={togglePlay} />
+          <BarSound togglePlay={togglePlay} setYoutubeID={setYoutubeID} setImgID={setImgID} />
         </div>
       </div>
     </>
