@@ -18,7 +18,9 @@ export const ToDo = () => {
             ArrayTask.push(newTask)
             setTasks(ArrayTask)
             localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
+            
         }
+        document.getElementById("SendTask").value =""
     }
 
 
@@ -38,8 +40,10 @@ export const ToDo = () => {
                             <button onClick={addTask} id="aceptar" className=" h-10 flex justify-center items-center bg bg-slate-600 rounded-r-md  p-1 px-3  border-none hover:bg-slate-800"> <CornerDownRight color="white" size={18}/> </button>
                         </div>
                     </section>
-                    <section className=" flex-grow  overflow-auto mb-2">
-                        {tasks.map((item) => <Task key={item.id} text={item.task} />)}
+                    <section className="scroll-fade scrollbar flex-grow  overflow-auto mb-2">
+                        <div class="fade-top"></div>
+                            {tasks.map((item) => <Task key={item.id} text={item.task} />)}
+                        <div class="fade-bottom"></div>
                     </section>
             </div>
         </>
