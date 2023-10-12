@@ -20,7 +20,9 @@ export const ToDo = () => {
             ArrayTask.push(newTask)
             setTasks(ArrayTask)
             localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
+            
         }
+        document.getElementById("SendTask").value = ""
     }
 
 
@@ -28,7 +30,7 @@ export const ToDo = () => {
 
     return (
         <>
-            <div className="w-5/12 bg-[#E3E9FF]">
+            <div className="w-5/12 bg-[#E3E9FF]  ">
                 <NavBar/>
                 <div className="m-1">
                     <section className="mt-4 ml-5">
@@ -41,7 +43,7 @@ export const ToDo = () => {
                             <button onClick={addTask} id="aceptar" className=" h-10 flex justify-center items-center bg bg-slate-600 rounded-r-md  p-1 px-3  border-none hover:bg-slate-800"> <CornerDownRight color="white" size={18}/> </button>
                         </div>
                     </section>
-                    <section className="mt-5 mx-5">
+                    <section className="mt-5 mx-5 max-h-96  pb-10   overflow-y-auto ">
                         {tasks.map((item) => <Task key={item.id} text={item.task} />)}
                     </section>
                 </div>

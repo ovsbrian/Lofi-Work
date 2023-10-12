@@ -11,7 +11,7 @@ export const NavBar= () =>{
     };
 
     return(
-            <nav className='w-full   border-b-2 border-gray-950'>
+            <nav className='w-full   border-b-2 border-gray-950 '>
                 <div className="flex justify-between items-center w-full px-6 py-4">
                     <h1 className='navbar-brand'>Mi Sitio</h1>
                    <div>
