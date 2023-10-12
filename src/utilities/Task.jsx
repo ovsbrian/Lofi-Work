@@ -1,11 +1,5 @@
-
 import { FaCheck, FaTrash } from 'react-icons/fa';
-
-
-
-
 export const Task = ({text,id}) =>{
-
 
     return(
     <li className="flex justify-between items-center p-4 bg-white shadow rounded-md mb-2">
