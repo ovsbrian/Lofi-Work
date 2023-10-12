@@ -42,7 +42,7 @@ export const ToDo = () => {
                     </section>
                     <section className="scroll-fade scrollbar flex-grow  overflow-auto mb-2">
                         <div class="fade-top"></div>
-                            {tasks.map((item) => <Task key={item.id} text={item.task} />)}
+                            {tasks.map((item) => <Task id={item.id} text={item.task} />)}
                         <div class="fade-bottom"></div>
                     </section>
             </div>
