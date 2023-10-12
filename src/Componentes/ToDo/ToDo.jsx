@@ -3,13 +3,26 @@ import { NavBar } from "../Layout/Navbar";
 import { useState } from "react";
 import { Task } from "../../utilities/Task";
 
+function validarespacios (parametro){
+    const patron = /^\s+$/
+    if(patron.test(parametro)){
+        return false
+    }else{
+        return true
+    }
+    
+
+}
+  
+
+
 export const ToDo = () => {
 
     const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("ArrayTask")) || [])
 
     const addTask = () => {
         let task = document.getElementById("SendTask").value
-        if (task !== "") {
+        if (task !== "" && validarespacios(task) == true) {
             const newTask = { id: Date.now().toString(), task: task }
             let ArrayTask =[]
             if (localStorage.getItem("ArrayTask")) {
