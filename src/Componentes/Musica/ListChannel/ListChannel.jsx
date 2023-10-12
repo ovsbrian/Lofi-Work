@@ -6,6 +6,7 @@ import {
   DropdownItem,
   Button,
 } from "@nextui-org/react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export const ListChannel = ({ setYoutubeID, setImgID }) => {
   const [selectedKeys, setSelectedKeys] = useState(["Lofi Hip Hop"]);
@@ -54,31 +55,13 @@ export const ListChannel = ({ setYoutubeID, setImgID }) => {
         <DropdownTrigger>
           <Button
             variant="bordered"
-            className="capitalize p-1 m-0 border-none min-w-4 h-4 justify-between"
+            className="capitalize p-1 m-0 border-none min-w-4 h-4 bg-[#c4b196]"
           >
             {selectedKeys}
             {!arrow ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
+             <ChevronUp />
             ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path d="m18 15-6-6-6 6" />
-              </svg>
+              <ChevronDown />
             )}
           </Button>
         </DropdownTrigger>
