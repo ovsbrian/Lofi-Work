@@ -10,11 +10,11 @@ import {
 import { useState } from "react";
 import { videosLofi } from "./ListChannel/ListMusic";
 import { cambiarCanal, pauseResume } from "./FuncionesMusic";
-
+ 
 export const BarSound = ({ togglePlay, setYoutubeID, setImgID }) => {
   const [pauseState, setPauseState] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+ 
   const siguienteCanal = () => {
     cambiarCanal(
       "siguiente",
@@ -62,6 +62,7 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID }) => {
         >
           <SkipForward />
         </span>
+       
         <VolumeX />
         <Volume1 />
         <Volume2 />
