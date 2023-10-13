@@ -9,43 +9,34 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { videosLofi } from "./ListChannel/ListMusic";
-
-
-
- 
-
+import { cambiarCanal, pauseResume } from "./FuncionesMusic";
 
 export const BarSound = ({ togglePlay, setYoutubeID, setImgID }) => {
   const [pauseState, setPauseState] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const siguienteCanal = () => {
-    if (currentIndex < videosLofi.length + 1) {
-      setCurrentIndex(currentIndex + 1);
-      const videoActual = videosLofi[currentIndex];
-
-      
-      localStorage.setItem( 'nombrepista', videoActual.nameRadio)
-      setYoutubeID(videoActual.radioID);
-      setImgID(videoActual.setImgID);
-
-
-    }
+    cambiarCanal(
+      "siguiente",
+      currentIndex,
+      videosLofi,
+      setCurrentIndex,
+      setYoutubeID,
+      setImgID
+    );
   };
 
-  function pauseResume() {
-    setPauseState(!pauseState);
-    togglePlay(!pauseState);
-  }
   const anteriorCanal = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      const videoActual = videosLofi[currentIndex];
-      localStorage.setItem( 'nombrepista', videoActual.nameRadio)
-      setYoutubeID(videoActual.radioID);
-      setImgID(videoActual.setImgID);
-    }
+    cambiarCanal(
+      "anterior",
+      currentIndex,
+      videosLofi,
+      setCurrentIndex,
+      setYoutubeID,
+      setImgID
+    );
   };
+
   return (
     <>
       <div className="flex gap-2 items-center select-none">
@@ -58,7 +49,7 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID }) => {
         <span
           className="cursor-pointer hover:scale-95"
           onClick={() => {
-            pauseResume();
+            pauseResume(pauseState, setPauseState, togglePlay);
           }}
         >
           {pauseState == false ? <Play /> : <Pause />}
