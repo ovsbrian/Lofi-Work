@@ -1,25 +1,28 @@
-import { useState } from "react";
-import { BarSound } from "./BarSound";
-import { ListChannel } from "./ListChannel/ListChannel";
+import React, { useState, useRef } from 'react';
+import YouTube from 'react-youtube';
+import { BarSound } from './BarSound';
+import { ListChannel } from './ListChannel/ListChannel';
 
 export const ImagenMusic = () => {
-  const [youtubeID, setYoutubeID] = useState("jfKfPfyJRdk");
-  const [imgID, setImgID] = useState("0hjOGLFaQa0AAAAd/lofi-girl-lofi");
-
+  const [youtubeID, setYoutubeID] = useState('jfKfPfyJRdk');
+  const [imgID, setImgID] = useState('0hjOGLFaQa0AAAAd/lofi-girl-lofi');
   const [play, setPlay] = useState(false);
-  const togglePlay = (playState) => {
-    setPlay(playState);
+  const playerRef = useRef(null);
+
+  const onReady = (event) => {
+    playerRef.current = event.target;
+    playerRef.current.playVideo();
   };
+
   return (
     <>
-      <div className=" items-center w-40 h-20">
-        <iframe
-          className="video pointer-events-none select-none w-full h-full hidden"
-          title="Youtube player"
-          src={`https://youtube.com/embed/${youtubeID}?autoplay=${
-            play ? 1 : 0
-          }&modestbranding=1&controls=0&showinfo=0`}
-        ></iframe>
+      <div className="items-center w-40 h-20">
+        <YouTube
+          videoId={youtubeID}
+          opts={{ playerVars: { autoplay: play ? 1 : 0 } }}
+          onReady={onReady}
+          className='hidden'
+        />
         <img
           src={`https://media.tenor.com/${imgID}.gif`}
           className="w-40 h-20 rounded-sm"
@@ -31,7 +34,12 @@ export const ImagenMusic = () => {
           <ListChannel setYoutubeID={setYoutubeID} setImgID={setImgID} />
         </div>
         <div className="flex gap-2">
-          <BarSound togglePlay={togglePlay} setYoutubeID={setYoutubeID} setImgID={setImgID} />
+          <BarSound
+            togglePlay={setPlay}
+            setYoutubeID={setYoutubeID}
+            setImgID={setImgID}
+            playerRef={playerRef}
+          />
         </div>
       </div>
     </>
