@@ -45,7 +45,6 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
   };
 
   const onVolumeChange = (event) => {
- 
     playerRef.current.setVolume(volume - 1);
     setVolume(event.target.value);
   };
