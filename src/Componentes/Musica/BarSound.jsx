@@ -14,8 +14,7 @@ import { cambiarCanal, pauseResume } from "./FuncionesMusic";
 export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
   const [pauseState, setPauseState] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [volume, setVolume] = useState(0);
-
+  const [volume, setVolume] = useState(100);
 
   const siguienteCanal = () => {
     cambiarCanal(
@@ -28,6 +27,7 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
     );
     playerRef.current.playVideo();
     togglePlay(true);
+    setVolume(100)
   };
 
   const anteriorCanal = () => {
@@ -41,12 +41,15 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
     );
     playerRef.current.playVideo();
     togglePlay(true);
+    setVolume(100)
   };
+
   const onVolumeChange = (event) => {
-    setVolume(event.target.value);
-    playerRef.current.setVolume(volume);
-  };
  
+    playerRef.current.setVolume(volume - 1);
+    setVolume(event.target.value);
+  };
+
   return (
     <>
       <div className="flex gap-2 items-center select-none">
@@ -85,12 +88,12 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
           <VolumeX />
         )}
         <input
-         className="slider bg-[#BCA37F] appearance-none  rounded-2xl"
+          className="slider bg-[#BCA37F] "
           type="range"
           min="0"
           max="100"
           value={volume}
-          onChange={onVolumeChange}
+          onInput={onVolumeChange}
         />
       </div>
     </>

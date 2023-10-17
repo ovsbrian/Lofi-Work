@@ -24,7 +24,7 @@ export const ListChannel = ({ setYoutubeID, setImgID }) => {
   };
  
   const nombrex = localStorage.getItem("nombrepista");
-  console.log(nombrex)
+ 
   return (
     <>
       <Dropdown onOpenChange={() => arrowState(!arrow)}>

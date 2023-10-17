@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import YouTube from 'react-youtube';
 import { BarSound } from './BarSound';
 import { ListChannel } from './ListChannel/ListChannel';
@@ -7,6 +7,7 @@ export const ImagenMusic = () => {
   const [youtubeID, setYoutubeID] = useState('jfKfPfyJRdk');
   const [imgID, setImgID] = useState('0hjOGLFaQa0AAAAd/lofi-girl-lofi');
   const [play, setPlay] = useState(false);
+ 
   const playerRef = useRef(null);
 
   const onReady = (event) => {
@@ -14,12 +15,13 @@ export const ImagenMusic = () => {
     playerRef.current.playVideo();
   };
 
+  
   return (
     <>
       <div className="items-center w-40 h-20">
         <YouTube
           videoId={youtubeID}
-          opts={{ playerVars: { autoplay: play ? 1 : 0 } }}
+          opts={{ playerVars: { autoplay: play ? 1 : 0} }}
           onReady={onReady}
           className='hidden'
         />
