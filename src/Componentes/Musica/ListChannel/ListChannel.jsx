@@ -9,7 +9,7 @@ import {
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { videosLofi } from "./ListMusic";
 
-export const ListChannel = ({ setYoutubeID, setImgID }) => {
+export const ListChannel = ({ setYoutubeID, setImgID, setVolume }) => {
   const [selectedKeys, setSelectedKeys] = useState(["Lofi Hip Hop"]);
   const [arrow, arrowState] = useState(false);
 
@@ -18,7 +18,7 @@ export const ListChannel = ({ setYoutubeID, setImgID }) => {
     const newLofi = videosLofi.find(
       (video) => video.nameRadio == key.currentKey
     );
-
+    setVolume(100)
     setYoutubeID(newLofi.radioID);
     setImgID(newLofi.setImgID);
   };
@@ -43,6 +43,7 @@ export const ListChannel = ({ setYoutubeID, setImgID }) => {
           disallowEmptySelection
           selectionMode="single"
           selectedKeys={selectedKeys}
+      
           onSelectionChange={cambiarVideoLofi}
         >
           {videosLofi.map((video) => (

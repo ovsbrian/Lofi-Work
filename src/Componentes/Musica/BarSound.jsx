@@ -11,10 +11,16 @@ import { useState } from "react";
 import { videosLofi } from "./ListChannel/ListMusic";
 import { cambiarCanal, pauseResume } from "./FuncionesMusic";
 
-export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
+export const BarSound = ({
+  togglePlay,
+  setYoutubeID,
+  setImgID,
+  playerRef,
+  volume,
+  setVolume,
+}) => {
   const [pauseState, setPauseState] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [volume, setVolume] = useState(100);
 
   const siguienteCanal = () => {
     cambiarCanal(
@@ -27,7 +33,7 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
     );
     playerRef.current.playVideo();
     togglePlay(true);
-    setVolume(100)
+    setVolume(100);
   };
 
   const anteriorCanal = () => {
@@ -41,12 +47,24 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
     );
     playerRef.current.playVideo();
     togglePlay(true);
-    setVolume(100)
+    setVolume(100);
   };
 
   const onVolumeChange = (event) => {
+    playerRef.current.unMute();
     playerRef.current.setVolume(volume - 1);
     setVolume(event.target.value);
+  };
+
+  const mutear = (volume) => {
+    if (volume > 0) {
+      playerRef.current.mute();
+      setVolume(0);
+    } else {
+      playerRef.current.unMute();
+      setVolume(100);
+      playerRef.current.setVolume(100) 
+    }
   };
 
   return (
@@ -79,13 +97,15 @@ export const BarSound = ({ togglePlay, setYoutubeID, setImgID, playerRef }) => {
         >
           <SkipForward />
         </span>
-        {volume > 0 && volume < 50 ? (
-          <Volume1 />
-        ) : volume > 50 ? (
-          <Volume2 />
-        ) : (
-          <VolumeX />
-        )}
+        <button onClick={() => mutear(volume)}>
+          {volume > 0 && volume < 50 ? (
+            <Volume1 />
+          ) : volume > 50 ? (
+            <Volume2 />
+          ) : (
+            <VolumeX />
+          )}
+        </button>
         <input
           className="slider bg-[#BCA37F] "
           type="range"
