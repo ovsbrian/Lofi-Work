@@ -13,12 +13,44 @@ function validarespacios (parametro){
     
 
 }
-  
+
+export const deleteToDo= (id)=> {
+    
+    console.log("se activo deletetodo");
+    let a = JSON.parse(localStorage.getItem("ArrayTask"))
+    let foundId = a.find(element=>element.id === id)
+    console.log("foundID ES"+foundId);
+    a = a.filter(aid => {
+        return aid!==foundId
+    })
+    localStorage.setItem("ArrayTask", JSON.stringify(a))
+    refreshTask()
+}
 
 
 export const ToDo = () => {
 
     const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("ArrayTask")) || [])
+
+const refreshTask =()=>{
+   
+    setTasks(ArrayTask)
+
+}
+
+const deleteToDo= (id)=> {
+    
+    console.log("se activo deletetodo");
+    let a = JSON.parse(localStorage.getItem("ArrayTask"))
+    let foundId = a.find(element=>element.id === id)
+    console.log("foundID ES"+foundId);
+    a = a.filter(aid => {
+        return aid!==foundId
+    })
+    localStorage.setItem("ArrayTask", JSON.stringify(a))
+    setTasks(a)
+}
+
 
     const addTask = () => {
         let task = document.getElementById("SendTask").value
@@ -34,6 +66,7 @@ export const ToDo = () => {
             
         }
         document.getElementById("SendTask").value =""
+
     }
 
 
@@ -54,9 +87,7 @@ export const ToDo = () => {
                         </div>
                     </section>
                     <section className="scroll-fade scrollbar flex-grow  overflow-auto mb-2">
-                        <div class="fade-top"></div>
-                            {tasks.map((item) => <Task id={item.id} text={item.task} />)}
-                        <div class="fade-bottom"></div>
+                            {tasks.map((item) => <Task id={item.id} text={item.task} deleteToDo={deleteToDo}/>)}
                     </section>
             </div>
         </>
