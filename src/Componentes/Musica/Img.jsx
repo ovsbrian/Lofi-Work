@@ -7,12 +7,15 @@ export const ImagenMusic = () => {
   const [youtubeID, setYoutubeID] = useState("jfKfPfyJRdk");
   const [imgID, setImgID] = useState("0hjOGLFaQa0AAAAd/lofi-girl-lofi");
   const [play, setPlay] = useState(false);
-  const [volume, setVolume] = useState(100);
+  const [volume, setVolume] = useState(20);
   const playerRef = useRef(null);
+
   const onReady = (event) => {
     playerRef.current = event.target;
-    playerRef.current.playVideo();
+    playerRef.current.playVideo();      
+    playerRef.current.setVolume(10) 
   };
+
   return (
     <>
       <div className="items-center w-40 h-20">
