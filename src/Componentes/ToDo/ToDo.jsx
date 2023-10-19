@@ -3,13 +3,58 @@ import { NavBar } from "../Layout/Navbar";
 import { useState } from "react";
 import { Task } from "../../utilities/Task";
 
+function validarespacios (parametro){
+    const patron = /^\s+$/
+    if(patron.test(parametro)){
+        return false
+    }else{
+        return true
+    }
+    
+
+}
+
+export const deleteToDo= (id)=> {
+    
+    console.log("se activo deletetodo");
+    let a = JSON.parse(localStorage.getItem("ArrayTask"))
+    let foundId = a.find(element=>element.id === id)
+    console.log("foundID ES"+foundId);
+    a = a.filter(aid => {
+        return aid!==foundId
+    })
+    localStorage.setItem("ArrayTask", JSON.stringify(a))
+    refreshTask()
+}
+
+
 export const ToDo = () => {
 
     const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("ArrayTask")) || [])
 
+const refreshTask =()=>{
+   
+    setTasks(ArrayTask)
+
+}
+
+const deleteToDo= (id)=> {
+    
+    console.log("se activo deletetodo");
+    let a = JSON.parse(localStorage.getItem("ArrayTask"))
+    let foundId = a.find(element=>element.id === id)
+    console.log("foundID ES"+foundId);
+    a = a.filter(aid => {
+        return aid!==foundId
+    })
+    localStorage.setItem("ArrayTask", JSON.stringify(a))
+    setTasks(a)
+}
+
+
     const addTask = () => {
         let task = document.getElementById("SendTask").value
-        if (task !== "") {
+        if (task !== "" && validarespacios(task) == true) {
             const newTask = { id: Date.now().toString(), task: task }
             let ArrayTask =[]
             if (localStorage.getItem("ArrayTask")) {
@@ -18,7 +63,10 @@ export const ToDo = () => {
             ArrayTask.push(newTask)
             setTasks(ArrayTask)
             localStorage.setItem("ArrayTask", JSON.stringify(ArrayTask))
+            
         }
+        document.getElementById("SendTask").value =""
+
     }
 
 
@@ -38,8 +86,8 @@ export const ToDo = () => {
                             <button onClick={addTask} id="aceptar" className=" h-10 flex justify-center items-center bg bg-slate-600 rounded-r-md  p-1 px-3  border-none hover:bg-slate-800"> <CornerDownRight color="white" size={18}/> </button>
                         </div>
                     </section>
-                    <section className=" flex-grow  overflow-auto mb-2">
-                        {tasks.map((item) => <Task key={item.id} text={item.task} />)}
+                    <section className="scroll-fade scrollbar flex-grow  overflow-auto mb-2">
+                            {tasks.map((item) => <Task id={item.id} text={item.task} deleteToDo={deleteToDo}/>)}
                     </section>
             </div>
         </>
