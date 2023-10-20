@@ -33,7 +33,9 @@ export const BarSound = ({
     );
     playerRef.current.playVideo();
     togglePlay(true);
-    setVolume(100);
+    setVolume(10);
+  
+   
   };
 
   const anteriorCanal = () => {
@@ -47,7 +49,8 @@ export const BarSound = ({
     );
     playerRef.current.playVideo();
     togglePlay(true);
-    setVolume(100);
+    setVolume(10);
+ 
   };
 
   const onVolumeChange = (event) => {
@@ -62,8 +65,8 @@ export const BarSound = ({
       setVolume(0);
     } else {
       playerRef.current.unMute();
-      setVolume(100);
-      playerRef.current.setVolume(100) 
+      setVolume(10);
+      playerRef.current.setVolume(10) 
     }
   };
 
