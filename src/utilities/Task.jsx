@@ -17,7 +17,7 @@ export const Task = ({text,id,deleteToDo}) =>{
             <span>{text}</span>
         </div>
         <div className=' flex  flex-col h-16 p-2'>
-            <button id={id+"trash"} onClick={()=>deleteToDo(id)} className="text-neutral-500 hover:text-neutral-950 hover:text-9xl">
+            <button id={id+"trash"} onClick={()=>deleteToDo(id)} className={`text-neutral-500 hover:text-neutral-950 hover:text-9xl transition-opacity duration-600 ${showDelete ? 'opacity-100' : 'opacity-0'}`}>
                 {showDelete ? <X  strokeWidth={1.25} />  : <></>   }
             </button>
         </div>
