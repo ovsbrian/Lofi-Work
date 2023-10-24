@@ -2,6 +2,7 @@ import { CornerDownRight } from "lucide-react";
 import { NavBar } from "../Layout/Navbar";
 import { useState } from "react";
 import { Task } from "../../utilities/Task";
+import { toast } from 'sonner'
 
 function validarespacios (parametro){
     const patron = /^\s+$/
@@ -32,11 +33,6 @@ export const ToDo = () => {
 
     const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("ArrayTask")) || [])
 
-const refreshTask =()=>{
-   
-    setTasks(ArrayTask)
-
-}
 
 const deleteToDo= (id)=> {
     
@@ -49,6 +45,9 @@ const deleteToDo= (id)=> {
     })
     localStorage.setItem("ArrayTask", JSON.stringify(a))
     setTasks(a)
+    
+    toast.error("Tarea Eliminada",{duration:2000})
+
 }
 
 
@@ -66,7 +65,6 @@ const deleteToDo= (id)=> {
             
         }
         document.getElementById("SendTask").value =""
-
     }
 
 
