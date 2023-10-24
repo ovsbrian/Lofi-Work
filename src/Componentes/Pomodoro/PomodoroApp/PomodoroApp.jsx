@@ -1,14 +1,21 @@
 import { Button, CircularProgress } from "@nextui-org/react";
 import { useState } from "react";
 
-export const PomodoroApp = ({hourAndMinutes}) => {
+export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
   const [pause, setPause] = useState(false);
-  const value = 20;
+  const {Break = 5, Focus  = 5, Cycles = 1} = info
+  const value = Focus;
 
   const pauseChange = () => {
     setPause(!pause);
-    // hacer q pare el tiempo o reanude
+    console.log(focus)
   };
+
+  const restart = () => {
+
+    setInitial(false)
+    
+  }
 
   return (
     <>
@@ -42,11 +49,16 @@ export const PomodoroApp = ({hourAndMinutes}) => {
               >
                 {pause ? "Resume" : "Pause"}
               </Button>
-              <Button size="sm" color="warning" className="font-semibold  w-16">
+              <Button
+                size="sm"
+                color="warning"
+                className="font-semibold w-16"
+                onClick={() => restart()}
+              >
                 Restart
               </Button>
             </div>
-            <span>Cycle 1/6</span>
+            <span>Cycle 1/{Cycles}</span>
           </div>
         </div>
       </div>

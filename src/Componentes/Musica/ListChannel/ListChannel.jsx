@@ -18,13 +18,14 @@ export const ListChannel = ({ setYoutubeID, setImgID, setVolume }) => {
     const newLofi = videosLofi.find(
       (video) => video.nameRadio == key.currentKey
     );
-    setVolume(100)
+    setVolume(100);
     setYoutubeID(newLofi.radioID);
     setImgID(newLofi.setImgID);
+    localStorage.setItem("nombrepista", key.currentKey);
   };
- 
+
   const nombrex = localStorage.getItem("nombrepista");
- 
+
   return (
     <>
       <Dropdown onOpenChange={() => arrowState(!arrow)}>
@@ -37,13 +38,13 @@ export const ListChannel = ({ setYoutubeID, setImgID, setVolume }) => {
             {!arrow ? <ChevronUp /> : <ChevronDown />}
           </Button>
         </DropdownTrigger>
+
         <DropdownMenu
           aria-label="Single selection example"
           variant="flat"
           disallowEmptySelection
           selectionMode="single"
           selectedKeys={selectedKeys}
-      
           onSelectionChange={cambiarVideoLofi}
         >
           {videosLofi.map((video) => (
