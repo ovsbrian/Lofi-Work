@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const PomodoroSettings = ({ title, color }) => {
+export const PomodoroSettings = ({ title, color, cycles }) => {
   const [count, setCount] = useState(0);
   return (
     <>
@@ -14,7 +14,7 @@ export const PomodoroSettings = ({ title, color }) => {
           <button
             className={`w-5 px-1 `}
             onClick={() => {
-              count != 0 ? setCount(count - 1) : "";
+              count != 0 ? setCount(cycles? count - 1: count -5) : "";
             }}
           >
             -
@@ -23,7 +23,7 @@ export const PomodoroSettings = ({ title, color }) => {
             <label>{count}</label>
             <label>m</label>
           </div>
-          <button className={`w-5 px-1 `} onClick={() => setCount(count + 1)}>
+          <button className={`w-5 px-1 `} onClick={() => setCount(cycles? count + 1: count + 5)}>
             +
           </button>
         </div>
