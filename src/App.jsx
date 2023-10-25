@@ -3,7 +3,7 @@ import { Musica } from "./Componentes/Musica/Musica";
 import { Pomodoro } from "./Componentes/Pomodoro/Pomodoro";
 import { ToDo } from "./Componentes/ToDo/ToDo";
 import   "./App.css"
-
+import { Toaster, toast } from 'sonner'
 function App() {
   return (
     <>
@@ -18,6 +18,7 @@ function App() {
           </div>
         </main>
       </NextUIProvider>
+      <Toaster position="bottom-left" richColors/>
     </>
   );
 }
