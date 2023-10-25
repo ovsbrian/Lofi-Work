@@ -5,18 +5,14 @@ import { PomodoroInitial } from "./PomodoroApp/PomodoroInitial";
 export const Pomodoro = () => {
   const [hourAndMinutes, setHourAndMinutes] = useState("");
   const [initial, setInitial] = useState(false);
-  const [userSettings, setUserSettings] = useState({
-    Focus: 5,
-    Break: 5,
-    Cycles: 1,
-  });
+  const [userSettings, setUserSettings] = useState('');
 
   useEffect(() => {
     const updateHourAndMinutes = () => {
       const date = new Date();
       let hr = date.getHours();
       let minutes = date.getMinutes();
-      const newHourAndMinutes = `${hr > 10 ? hr : "0" + hr}:${
+      const newHourAndMinutes = `${hr >= 10 ? hr : "0" + hr}:${
         minutes > 10 ? minutes : "0" + minutes
       }`;
       setHourAndMinutes(newHourAndMinutes);

@@ -1,13 +1,18 @@
 import { Button, CircularProgress } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
-export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
-  const { Break = 5, Focus = 5, Cycles = 1 } = info;
+export const PomodoroApp = ({ hourAndMinutes, setInitial, info }) => {
+  const audio = new Audio("./soundBreak.mp3");
+  const audio2 = new Audio("./Audio2.mp3");
+  audio.volume = 0.1;
+  audio2.volume = 0.1;
+  const { Break = 0.1, Focus = 0.1, Cycles = 1 } = info;
   const [secondsLeft, setSecondsLeft] = useState(Focus * 60);
   const [cyclesLeft, setCyclesLeft] = useState(Cycles);
   const [isPaused, setIsPaused] = useState(false);
   const [isBreakTime, setIsBreakTime] = useState(false);
- 
+  const [percentage, setPercentage] = useState();
+
   useEffect(() => {
     let timer;
     if (!isPaused && cyclesLeft > 0) {
@@ -18,11 +23,20 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
           setIsBreakTime(false);
           setSecondsLeft(Focus * 60);
           setCyclesLeft(cyclesLeft - 1);
+          audio2.play(); // poner song para cuando termine cada break
         } else {
+          audio.play(); // poner song para cuando termine cada focus
           setIsBreakTime(true);
           setSecondsLeft(Break * 60);
         }
+        const currentCycleTime = isBreakTime ? Break * 60 : Focus * 60;
+        const percentage =
+          ((currentCycleTime - secondsLeft) / currentCycleTime) * 100;
+        setPercentage(percentage);
       }, 1000);
+    } else if (cyclesLeft === 0) {
+      audio2.play(); // poner song para cuando termine total - poner alerta
+      restart();
     }
     return () => clearInterval(timer);
   }, [secondsLeft, isPaused, cyclesLeft, isBreakTime]);
@@ -34,7 +48,9 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes != 0? minutes +':' : ''}${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}${minutes != 0? "m" : "s"}`;
+    return `${minutes != 0 ? minutes + ":" : ""}${
+      remainingSeconds < 10 ? "0" : ""
+    }${remainingSeconds}${minutes != 0 ? "m" : "s"}`;
   }
 
   return (
@@ -42,21 +58,22 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
       <div className="bg-lime-900 w-44 h-64 flex flex-col justify-center items-center text-white gap-4  rounded-2xl font-medium">
         <div className=" flex flex-col justify-around items-center w-full h-full">
           <div className="w-full flex justify-between px-3">
-            <span>{isBreakTime? 'Break' : 'Focus'}</span>
+            <span>{isBreakTime ? "Break" : "Focus"}</span>
             <span>{hourAndMinutes}</span>
           </div>
           <div>
             <CircularProgress
+              aria-label="Pomodoro Timer Progress"
               classNames={{
                 svg: "w-36 h-36 drop-shadow-md ",
                 indicator: "stroke-white",
                 track: "stroke-white/10",
                 value: "text-2xl font-semibold  ",
               }}
-              value={formatTime(secondsLeft)}
+              value={percentage}
               strokeWidth={4}
               showValueLabel={true}
-              valueLabel={isPaused ? "paused" : formatTime(secondsLeft) }
+              valueLabel={isPaused ? "paused" : formatTime(secondsLeft)}
             />
           </div>
           <div className="flex flex-col gap-1 items-center justify-center">
