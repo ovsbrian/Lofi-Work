@@ -2,7 +2,7 @@ import { Button } from "@nextui-org/react";
 import { PomodoroSettings } from "./PomodoroSettings";
 import { useEffect, useState } from "react";
 
-export const PomodoroInitial = ({ hourAndMinutes, setInitial, setHoladx }) => {
+export const PomodoroInitial = ({ hourAndMinutes, setInitial, setUserSettings }) => {
   const [settings, setSettings] = useState({})
 
   const manejarCambioContador = (nombre, valor) => {
@@ -12,7 +12,7 @@ export const PomodoroInitial = ({ hourAndMinutes, setInitial, setHoladx }) => {
 
   useEffect(() => {
     
-    setHoladx(settings)
+    setUserSettings(settings)
   }, [settings]); // no cambia la primera vez, es decir, con default
 
 

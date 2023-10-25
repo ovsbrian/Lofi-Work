@@ -5,12 +5,20 @@ import { PomodoroInitial } from "./PomodoroApp/PomodoroInitial";
 export const Pomodoro = () => {
   const [hourAndMinutes, setHourAndMinutes] = useState("");
   const [initial, setInitial] = useState(false);
-  const [holadx , setHoladx] = useState('')
-  
+  const [userSettings, setUserSettings] = useState({
+    Focus: 5,
+    Break: 5,
+    Cycles: 1,
+  });
+
   useEffect(() => {
     const updateHourAndMinutes = () => {
       const date = new Date();
-      const newHourAndMinutes = date.getHours() + ":" + date.getMinutes();
+      let hr = date.getHours();
+      let minutes = date.getMinutes();
+      const newHourAndMinutes = `${hr > 10 ? hr : "0" + hr}:${
+        minutes > 10 ? minutes : "0" + minutes
+      }`;
       setHourAndMinutes(newHourAndMinutes);
     };
 
@@ -37,9 +45,17 @@ export const Pomodoro = () => {
     <>
       <div className="h-5/7 flex gap-4 p-4 select-none ">
         {initial ? (
-          <PomodoroApp hourAndMinutes={hourAndMinutes}  setInitial={setInitial} info={holadx} />
+          <PomodoroApp
+            hourAndMinutes={hourAndMinutes}
+            setInitial={setInitial}
+            info={userSettings}
+          />
         ) : (
-          <PomodoroInitial hourAndMinutes={hourAndMinutes} setInitial={setInitial} setHoladx={setHoladx}/>
+          <PomodoroInitial
+            hourAndMinutes={hourAndMinutes}
+            setInitial={setInitial}
+            setUserSettings={setUserSettings}
+          />
         )}
       </div>
     </>

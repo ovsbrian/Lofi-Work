@@ -24,7 +24,7 @@ export const ListChannel = ({ setYoutubeID, setImgID, setVolume }) => {
     localStorage.setItem("nombrepista", key.currentKey);
   };
 
-  const nombrex = localStorage.getItem("nombrepista");
+  const nombrePista = localStorage.getItem("nombrepista");
 
   return (
     <>
@@ -34,7 +34,7 @@ export const ListChannel = ({ setYoutubeID, setImgID, setVolume }) => {
             variant="bordered"
             className="capitalize p-1 m-0 border-none min-w-4 h-4 bg-[#c4b196]"
           >
-            {nombrex ? nombrex : selectedKeys}
+            {nombrePista ? nombrePista : selectedKeys}
             {!arrow ? <ChevronUp /> : <ChevronDown />}
           </Button>
         </DropdownTrigger>

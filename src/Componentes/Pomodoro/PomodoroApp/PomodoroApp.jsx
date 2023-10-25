@@ -1,20 +1,40 @@
 import { Button, CircularProgress } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
-  const [pause, setPause] = useState(false);
-  const {Break = 5, Focus  = 5, Cycles = 1} = info
-  const value = Focus;
+  const { Break = 5, Focus = 5, Cycles = 1 } = info;
+  const [secondsLeft, setSecondsLeft] = useState(Focus * 60);
+  const [cyclesLeft, setCyclesLeft] = useState(Cycles);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isBreakTime, setIsBreakTime] = useState(false);
+ 
+  useEffect(() => {
+    let timer;
+    if (!isPaused && cyclesLeft > 0) {
+      timer = setInterval(() => {
+        if (secondsLeft > 0) {
+          setSecondsLeft(secondsLeft - 1);
+        } else if (isBreakTime) {
+          setIsBreakTime(false);
+          setSecondsLeft(Focus * 60);
+          setCyclesLeft(cyclesLeft - 1);
+        } else {
+          setIsBreakTime(true);
+          setSecondsLeft(Break * 60);
+        }
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [secondsLeft, isPaused, cyclesLeft, isBreakTime]);
 
-  const pauseChange = () => {
-    setPause(!pause);
-    console.log(focus)
-  };
+  const pauseChange = () => setIsPaused(!isPaused);
 
-  const restart = () => {
+  const restart = () => setInitial(false);
 
-    setInitial(false)
-    
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes != 0? minutes +':' : ''}${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}${minutes != 0? "m" : "s"}`;
   }
 
   return (
@@ -22,7 +42,7 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
       <div className="bg-lime-900 w-44 h-64 flex flex-col justify-center items-center text-white gap-4  rounded-2xl font-medium">
         <div className=" flex flex-col justify-around items-center w-full h-full">
           <div className="w-full flex justify-between px-3">
-            <span>Focus</span>
+            <span>{isBreakTime? 'Break' : 'Focus'}</span>
             <span>{hourAndMinutes}</span>
           </div>
           <div>
@@ -33,10 +53,10 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
                 track: "stroke-white/10",
                 value: "text-2xl font-semibold  ",
               }}
-              value={value}
+              value={formatTime(secondsLeft)}
               strokeWidth={4}
               showValueLabel={true}
-              valueLabel={pause ? "paused" : value + "m"}
+              valueLabel={isPaused ? "paused" : formatTime(secondsLeft) }
             />
           </div>
           <div className="flex flex-col gap-1 items-center justify-center">
@@ -47,7 +67,7 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info,   }) => {
                 className="font-semibold w-16"
                 onClick={pauseChange}
               >
-                {pause ? "Resume" : "Pause"}
+                {isPaused ? "Resume" : "Pause"}
               </Button>
               <Button
                 size="sm"
