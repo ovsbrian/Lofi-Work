@@ -13,7 +13,7 @@ export const PomodoroInitial = ({ hourAndMinutes, setInitial, setUserSettings })
   useEffect(() => {
     
     setUserSettings(settings)
-  }, [settings]); // no cambia la primera vez, es decir, con default
+  }, [settings]);  
 
 
   return (
