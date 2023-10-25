@@ -13,7 +13,7 @@ export const Pomodoro = () => {
       let hr = date.getHours();
       let minutes = date.getMinutes();
       const newHourAndMinutes = `${hr >= 10 ? hr : "0" + hr}:${
-        minutes > 10 ? minutes : "0" + minutes
+        minutes >= 10 ? minutes : "0" + minutes
       }`;
       setHourAndMinutes(newHourAndMinutes);
     };

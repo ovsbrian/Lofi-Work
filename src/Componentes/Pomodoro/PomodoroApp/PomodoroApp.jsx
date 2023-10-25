@@ -2,10 +2,10 @@ import { Button, CircularProgress } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
 export const PomodoroApp = ({ hourAndMinutes, setInitial, info }) => {
-  const audio = new Audio("./soundBreak.mp3");
-  const audio2 = new Audio("./Audio2.mp3");
-  audio.volume = 0.1;
-  audio2.volume = 0.1;
+  const soundAlarm = new Audio("./finishSound.mp3");
+ 
+ 
+  soundAlarm.volume = 0.1;
   const { Break = 0.1, Focus = 0.1, Cycles = 1 } = info;
   const [secondsLeft, setSecondsLeft] = useState(Focus * 60);
   const [cyclesLeft, setCyclesLeft] = useState(Cycles);
@@ -23,9 +23,9 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info }) => {
           setIsBreakTime(false);
           setSecondsLeft(Focus * 60);
           setCyclesLeft(cyclesLeft - 1);
-          audio2.play(); // poner song para cuando termine cada break
+          soundAlarm.play();  
         } else {
-          audio.play(); // poner song para cuando termine cada focus
+          soundAlarm.play(); 
           setIsBreakTime(true);
           setSecondsLeft(Break * 60);
         }
@@ -35,7 +35,7 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info }) => {
         setPercentage(percentage);
       }, 1000);
     } else if (cyclesLeft === 0) {
-      audio2.play(); // poner song para cuando termine total - poner alerta
+      soundAlarm.play(); 
       restart();
     }
     return () => clearInterval(timer);
@@ -95,7 +95,7 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info }) => {
                 Restart
               </Button>
             </div>
-            <span>Cycle 1/{Cycles}</span>
+            <span>{cyclesLeft} {cyclesLeft > 1 ? `cycles` : 'cycle' } left</span>
           </div>
         </div>
       </div>
