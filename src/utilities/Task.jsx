@@ -1,13 +1,13 @@
 import { CheckCircle2, Circle, X } from 'lucide-react';
 import { useState } from 'react';
-export const Task = ({text,id,deleteToDo}) =>{
+export const Task = ({text,id,deleteToDo,addCheck}) =>{
 
     const[circle, setCircle] = useState(false)
     const [showDelete, setShowDelete] = useState(false);
     return(
     <li onMouseEnter={()=> setShowDelete(true)}  onMouseLeave={() => setShowDelete(false)} className="flex  items-center  bg-white shadow rounded-md mb-4 mx-1">
         <div className='flex items-center px-4'>
-            <button  onMouseEnter={()=> setCircle(true)}  onMouseLeave={() => setCircle(false)} id={id+"check"} className="text-[#467BD5]">
+            <button  onMouseEnter={()=> setCircle(true)}  onMouseLeave={() => setCircle(false)} id={id+"check"} onClick={()=>addCheck(id)} className="text-[#467BD5]">
                 {circle ?  <CheckCircle2 />  :  <Circle />}   
             </button>
         </div>

@@ -28,6 +28,11 @@ export const deleteToDo= (id)=> {
     refreshTask()
 }
 
+export const addCheck = (id) =>{
+
+
+
+}
 
 export const ToDo = () => {
 
@@ -35,8 +40,6 @@ export const ToDo = () => {
 
 
 const deleteToDo= (id)=> {
-    
-    console.log("se activo deletetodo");
     let a = JSON.parse(localStorage.getItem("ArrayTask"))
     let foundId = a.find(element=>element.id === id)
     console.log("foundID ES"+foundId);
