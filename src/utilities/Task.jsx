@@ -7,7 +7,7 @@ export const Task = ({text,id,deleteToDo,addCheck}) =>{
     return(
     <li onMouseEnter={()=> setShowDelete(true)}  onMouseLeave={() => setShowDelete(false)} className="flex  items-center  bg-white shadow rounded-md mb-4 mx-1">
         <div className='flex items-center px-4'>
-            <button  onMouseEnter={()=> setCircle(true)}  onMouseLeave={() => setCircle(false)} id={id+"check"} onClick={()=>addCheck(id)} className="text-[#467BD5]">
+            <button  onMouseEnter={()=> setCircle(true)}  onMouseLeave={() => setCircle(false)} onClick={()=>addCheck(id)} className="text-[#467BD5]">
                 {circle ?  <CheckCircle2 />  :  <Circle />}   
             </button>
         </div>
@@ -16,7 +16,7 @@ export const Task = ({text,id,deleteToDo,addCheck}) =>{
             <span>{text}</span>
         </div>
         <div className=' flex  flex-col h-16 p-2'>
-            <button id={id+"trash"} onClick={()=>deleteToDo(id)} className={`text-neutral-500 hover:text-neutral-950 hover:text-9xl  transition-all duration-300 ${showDelete ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+            <button onClick={()=>deleteToDo(id)} className={`text-neutral-500 hover:text-neutral-950 hover:text-9xl  transition-all duration-300 ${showDelete ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <X  strokeWidth={1.25} />  
             </button>
         </div>

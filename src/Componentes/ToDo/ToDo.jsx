@@ -17,10 +17,8 @@ function validarespacios (parametro){
 
 export const deleteToDo= (id)=> {
     
-    console.log("se activo deletetodo");
     let a = JSON.parse(localStorage.getItem("ArrayTask"))
     let foundId = a.find(element=>element.id === id)
-    console.log("foundID ES"+foundId);
     a = a.filter(aid => {
         return aid!==foundId
     })
@@ -29,8 +27,20 @@ export const deleteToDo= (id)=> {
 }
 
 export const addCheck = (id) =>{
+    let a = JSON.parse(localStorage.getItem("ArrayTask"))
+    let foundId = a.find(element=>element.id === id)
+    a = a.filter(aid => {
+        return aid!==foundId
+    })
+    localStorage.setItem("ArrayTask", JSON.stringify(a))
+    refreshTask()
+    
+    let Arraycheck =[]
+    if (localStorage.getItem("ArrayTask")) {
+        Arraycheck = JSON.parse(localStorage.getItem("ArrayTask"))
+    } 
 
-
+   // ArrayTask.push(newTask)
 
 }
 
