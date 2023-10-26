@@ -6,7 +6,7 @@ export const PomodoroApp = ({ hourAndMinutes, setInitial, info }) => {
  
  
   soundAlarm.volume = 0.1;
-  const { Break = 0.1, Focus = 0.1, Cycles = 1 } = info;
+  const { Break = 5, Focus = 5, Cycles = 1 } = info;
   const [secondsLeft, setSecondsLeft] = useState(Focus * 60);
   const [cyclesLeft, setCyclesLeft] = useState(Cycles);
   const [isPaused, setIsPaused] = useState(false);
